@@ -19,11 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let autorAPI = AutoresAPI()
+        let livrosAPI = LivrosAPI()
         
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers.first as! AutoresListViewController
         
         controller.autoresAPI = autorAPI
+        controller.livrosAPI = livrosAPI
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

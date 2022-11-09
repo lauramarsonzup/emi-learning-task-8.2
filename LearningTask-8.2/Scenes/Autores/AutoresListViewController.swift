@@ -10,6 +10,7 @@ import UIKit
 class AutoresListViewController: UITableViewController {
 
     var autoresAPI: AutoresAPI?
+    var livrosAPI: LivrosAPI?
     
     var autores: [Autor] = [] {
         didSet {
@@ -35,6 +36,17 @@ class AutoresListViewController: UITableViewController {
     func carregaAutores() {
         guard let autorAPI = autoresAPI else { return }
         self.autores = autorAPI.listaTodos()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "seeAuthorDetailsSegue" else { return }
+        
+        guard let cell = sender as? AutorTableViewCell, let destinationController = segue.destination as? DetalhesDoAutorViewController else {
+            fatalError("Não foi possível executar a segue")
+        }
+        
+        destinationController.autor = cell.autor
+        destinationController.livrosAPI = livrosAPI
     }
 
 }
