@@ -20,4 +20,12 @@ class LivroDoAutorViewCell: UITableViewCell {
             bookImageView.image = .init(livro.imagemDeCapaURI, aspectFillIn: bookImageView.bounds)
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = .texasRose.withAlphaComponent(0.3)
+        selectedBackgroundView = bgColorView
+    }
 }
